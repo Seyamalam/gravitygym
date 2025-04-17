@@ -1,5 +1,7 @@
+"use client";
+
 import { useEffect, useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 const partners = [
   { name: "Nike", logo: "https://cdn.iconscout.com/icon/free/png-256/free-nike-8-202235.png" },

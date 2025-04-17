@@ -1,5 +1,8 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
+import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { ArrowRight } from "lucide-react";
 
 const successStories = [
@@ -15,7 +18,9 @@ const successStories = [
       { label: "Muscle Mass", value: "+8 lbs" }
     ],
     quote: "After having two kids, I never thought I'd get back in shape. GravityGym's trainers designed a program that fit my busy schedule, and the results have been life-changing.",
-    story: "Sarah joined after struggling with postpartum weight for 3 years. With a combination of HIIT training and nutrition guidance, she achieved her goals while balancing family life."
+    story: "Sarah joined after struggling with postpartum weight for 3 years. With a combination of HIIT training and nutrition guidance, she achieved her goals while balancing family life.",
+    src: "https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=1374&auto=format&fit=crop",
+    designation: "Weight Loss Journey"
   },
   {
     name: "David Chen",
@@ -29,7 +34,9 @@ const successStories = [
       { label: "Blood Pressure", value: "Normalized" }
     ],
     quote: "After my heart scare, I knew I needed to make a change. The team at GravityGym didn't just help me lose weight—they helped me save my life.",
-    story: "David came to us after a health warning from his doctor. His transformation focused on cardiac health first, with strength training added gradually as his condition improved."
+    story: "David came to us after a health warning from his doctor. His transformation focused on cardiac health first, with strength training added gradually as his condition improved.",
+    src: "https://images.unsplash.com/photo-1534368420009-621bfab424a8?q=80&w=1000&auto=format&fit=crop",
+    designation: "Health Transformation"
   },
   {
     name: "Maria Torres",
@@ -43,7 +50,9 @@ const successStories = [
       { label: "Mile Time", value: "-1:45" }
     ],
     quote: "I came to GravityGym looking to get in better shape, but ended up discovering my passion for competitive fitness. Now I'm training for my second competition!",
-    story: "Maria transformed from a casual exerciser to a fitness competitor through our Elite program. Her dedicated training regimen and precise nutrition planning led to her first competitive win."
+    story: "Maria transformed from a casual exerciser to a fitness competitor through our Elite program. Her dedicated training regimen and precise nutrition planning led to her first competitive win.",
+    src: "https://images.unsplash.com/photo-1579758629938-03607ccdbaba?q=80&w=1470&auto=format&fit=crop",
+    designation: "Fitness Competitor"
   }
 ];
 
@@ -56,6 +65,12 @@ export function SuccessStories() {
           Real results from real members. See how GravityGym has transformed lives through dedicated training and support.
         </p>
 
+        {/* Animated Testimonials Section */}
+        <div className="mb-16">
+          <AnimatedTestimonials testimonials={successStories} autoplay={true} />
+        </div>
+
+        {/* Success Stories Details */}
         <div className="space-y-16">
           {successStories.map((story, index) => (
             <CardContainer key={index} className="w-full">

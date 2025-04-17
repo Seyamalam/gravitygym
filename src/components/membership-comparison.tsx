@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
