@@ -15,13 +15,13 @@ const nutritionCategories = [
       {
         title: "Protein Oatmeal Bowl",
         description: "Quick-digesting carbs with protein for sustained energy",
-        image: "https://images.unsplash.com/photo-1620807773206-91cac59902d1?q=80&w=1000&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1571748982800-fa51082c2224?q=80&w=1000&auto=format&fit=crop",
         items: ["Rolled oats", "Protein powder", "Banana", "Almond butter", "Cinnamon"]
       },
       {
         title: "Energy Smoothie",
         description: "Perfect blend of carbs and protein for pre-workout fuel",
-        image: "https://images.unsplash.com/photo-1626222627180-9e5ca7b7b390?q=80&w=1000&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1606411312124-21322f0a23ef?q=80&w=1000&auto=format&fit=crop",
         items: ["Frozen berries", "Banana", "Greek yogurt", "Honey", "Spinach"]
       },
       {

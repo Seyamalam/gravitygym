@@ -98,22 +98,23 @@ export function FAQSection() {
   return (
     <section className="py-20 bg-black" id="faq">
       <div className="container mx-auto px-4 md:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">FREQUENTLY ASKED QUESTIONS</h2>
-        <p className="text-gray-300 text-center mb-12 max-w-2xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-center text-white drop-shadow-lg">
+          FREQUENTLY ASKED <span className="text-lime-400">QUESTIONS</span>
+        </h2>
+        <p className="text-gray-100 text-center mb-12 max-w-2xl mx-auto text-lg font-medium drop-shadow">
           Find answers to our most commonly asked questions. If you can't find what you're looking for, feel free to contact us.
         </p>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {faqCategories.map((category, index) => (
-            <div key={index} className="bg-zinc-800 rounded-xl p-6 border border-zinc-700">
-              <h3 className="text-xl font-bold mb-4 text-lime-500">{category.title}</h3>
+            <div key={index} className="bg-zinc-800 rounded-xl p-6 border border-zinc-700 shadow-lg">
+              <h3 className="text-xl font-bold mb-4 text-lime-500 drop-shadow">{category.title}</h3>
               <Accordion type="single" collapsible className="w-full">
                 {category.items.map((item, itemIndex) => (
                   <AccordionItem key={itemIndex} value={`item-${index}-${itemIndex}`} className="border-zinc-700">
-                    <AccordionTrigger className="text-left hover:text-lime-500 py-4">
+                    <AccordionTrigger className="text-left hover:text-lime-500 py-4 text-white font-semibold">
                       {item.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-gray-300">
+                    <AccordionContent className="text-gray-100">
                       {item.answer}
                     </AccordionContent>
                   </AccordionItem>
@@ -122,16 +123,15 @@ export function FAQSection() {
             </div>
           ))}
         </div>
-
-        <div className="mt-12 bg-lime-500/10 border border-lime-500/20 rounded-xl p-6 max-w-3xl mx-auto">
-          <h3 className="text-xl font-bold mb-4 text-center">Still have questions?</h3>
-          <p className="text-gray-300 text-center mb-6">
+        <div className="mt-12 bg-lime-500/10 border border-lime-500/20 rounded-xl p-6 max-w-3xl mx-auto shadow-lg">
+          <h3 className="text-xl font-bold mb-4 text-center text-white drop-shadow">Still have questions?</h3>
+          <p className="text-gray-100 text-center mb-6">
             Our team is here to help. Contact us directly and we'll get back to you as soon as possible.
           </p>
           <div className="flex justify-center">
             <a 
               href="#contact" 
-              className="bg-lime-500 hover:bg-lime-600 text-black font-bold px-8 py-3 rounded-lg inline-block"
+              className="bg-lime-500 hover:bg-lime-600 text-black font-extrabold px-8 py-3 rounded-lg inline-block text-lg shadow-lg"
             >
               Contact Us
             </a>

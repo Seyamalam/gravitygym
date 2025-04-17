@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 const partners = [
-  { name: "Nike", logo: "https://cdn.iconscout.com/icon/free/png-256/free-nike-8-202235.png" },
   { name: "Under Armour", logo: "https://cdn.iconscout.com/icon/free/png-256/free-under-armour-282153.png" },
   { name: "Adidas", logo: "https://cdn.iconscout.com/icon/free/png-256/free-adidas-282415.png" },
   { name: "Reebok", logo: "https://cdn.iconscout.com/icon/free/png-256/free-reebok-283121.png" },
@@ -12,7 +11,6 @@ const partners = [
   { name: "New Balance", logo: "https://cdn.iconscout.com/icon/free/png-256/free-new-balance-283094.png" },
   { name: "Asics", logo: "https://cdn.iconscout.com/icon/free/png-256/free-asics-283044.png" },
   { name: "MyProtein", logo: "https://cdn.iconscout.com/icon/free/png-256/free-myprotein-3521562-2944975.png" },
-  { name: "Optimum Nutrition", logo: "https://cdn.iconscout.com/icon/free/png-256/free-on-3717517-3100772.png" },
   { name: "Garmin", logo: "https://cdn.iconscout.com/icon/free/png-256/free-garmin-283119.png" },
   { name: "Fitbit", logo: "https://cdn.iconscout.com/icon/free/png-256/free-fitbit-282436.png" },
   { name: "Polar", logo: "https://cdn.iconscout.com/icon/free/png-256/free-polar-283117.png" }

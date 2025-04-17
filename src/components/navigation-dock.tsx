@@ -1,15 +1,20 @@
 "use client";
 
 import { FloatingDock } from "@/components/ui/floating-dock";
-import { 
-  IconHome, 
-  IconInfoCircle, 
-  IconCalendarEvent, 
-  IconUsers, 
-  IconCurrencyDollar, 
+import {
+  IconHome,
+  IconInfoCircle,
+  IconCalendarEvent,
+  IconUsers,
+  IconCurrencyDollar,
   IconPhoneCall,
   IconBarbell,
-  IconMedal
+  IconMedal,
+  IconBook,
+  IconQuestionMark,
+  IconLeaf,
+  IconStar,
+  IconBrandGoogle,
 } from "@tabler/icons-react";
 
 export function NavigationDock() {
@@ -40,14 +45,44 @@ export function NavigationDock() {
       icon: <IconCalendarEvent className="h-full w-full text-lime-500" />,
     },
     {
+      title: "Membership",
+      href: "/#membership-comparison",
+      icon: <IconStar className="h-full w-full text-lime-500" />,
+    },
+    {
       title: "Pricing",
       href: "/#pricing",
       icon: <IconCurrencyDollar className="h-full w-full text-lime-500" />,
     },
     {
+      title: "Nutrition",
+      href: "/#nutrition",
+      icon: <IconLeaf className="h-full w-full text-lime-500" />,
+    },
+    {
+      title: "Success Stories",
+      href: "/#success-stories",
+      icon: <IconMedal className="h-full w-full text-lime-500" />,
+    },
+    {
       title: "Testimonials",
       href: "/#testimonials",
-      icon: <IconMedal className="h-full w-full text-lime-500" />,
+      icon: <IconBook className="h-full w-full text-lime-500" />,
+    },
+    {
+      title: "Blog",
+      href: "/#blog",
+      icon: <IconBrandGoogle className="h-full w-full text-lime-500" />,
+    },
+    {
+      title: "FAQ",
+      href: "/#faq",
+      icon: <IconQuestionMark className="h-full w-full text-lime-500" />,
+    },
+    {
+      title: "Partners",
+      href: "/#partners",
+      icon: <IconUsers className="h-full w-full text-lime-500" />,
     },
     {
       title: "Contact",
@@ -57,7 +92,7 @@ export function NavigationDock() {
   ];
 
   return (
-    <FloatingDock 
+    <FloatingDock
       items={navItems}
       desktopClassName="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-zinc-900/90 backdrop-blur-md border border-zinc-800 shadow-lg shadow-lime-500/10"
       mobileClassName="fixed bottom-8 right-8 z-50"

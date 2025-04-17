@@ -65,36 +65,46 @@ const schedule: ScheduleType = {
 export function ScheduleSection() {
   return (
     <section className="py-20 bg-black" id="schedule">
-      <div className="container mx-auto px-4 md:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">CLASS SCHEDULE</h2>
-        
+      <div className="container mx-auto px-2 md:px-8">
+        <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-center text-white drop-shadow-lg">CLASS <span className="text-lime-400">SCHEDULE</span></h2>
         <div className="overflow-x-auto">
-          <Table className="border-collapse">
-            <TableHeader>
-              <TableRow>
-                <TableHead className="bg-zinc-800 text-center">TIME</TableHead>
-                {weekDays.map((day) => (
-                  <TableHead key={day} className="bg-zinc-800 text-center">{day}</TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {timeSlots.map((time) => (
-                <TableRow key={time}>
-                  <TableCell className="bg-zinc-800 text-center font-medium">{time}</TableCell>
-                  {weekDays.map((day) => (
-                    <TableCell 
-                      key={`${day}-${time}`} 
-                      className={`text-center ${schedule[day]?.[time] ? 'bg-lime-500/20 text-lime-500' : 'bg-zinc-900'}`}
-                    >
-                      {schedule[day]?.[time] || "—"}
-                    </TableCell>
+          <div className="bg-zinc-900/90 rounded-2xl shadow-2xl border border-zinc-800 max-w-6xl mx-auto">
+            <Table className="border-collapse w-full text-base">
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="bg-zinc-800 text-center text-lime-400 font-bold text-lg py-4 rounded-tl-2xl">TIME</TableHead>
+                  {weekDays.map((day, idx) => (
+                    <TableHead key={day} className={`bg-zinc-800 text-center text-lime-400 font-bold text-lg py-4 ${idx === weekDays.length - 1 ? 'rounded-tr-2xl' : ''}`}>{day}</TableHead>
                   ))}
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {timeSlots.map((time, rowIdx) => (
+                  <TableRow key={time} className={rowIdx % 2 === 0 ? "bg-zinc-900/70" : "bg-zinc-800/80"}>
+                    <TableCell className="bg-zinc-800 text-center font-semibold text-white py-3 px-2 border-b border-zinc-700 sticky left-0 z-10">{time}</TableCell>
+                    {weekDays.map((day, colIdx) => {
+                      const className = schedule[day]?.[time];
+                      return (
+                        <TableCell
+                          key={`${day}-${time}`}
+                          className={`text-center px-2 py-3 border-b border-zinc-700 transition-colors duration-200 ${
+                            className
+                              ? "bg-lime-500/20 text-lime-300 font-bold rounded-lg shadow-sm hover:bg-lime-500/40 cursor-pointer"
+                              : "text-zinc-500"
+                          } ${colIdx === weekDays.length - 1 ? 'rounded-r-lg' : ''}`}
+                          aria-label={className ? `${className} at ${time} on ${day}` : `No class at ${time} on ${day}`}
+                        >
+                          {className || <span className="opacity-60">—</span>}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </div>
+        <p className="text-gray-400 text-center mt-6 text-sm">Tap on a class for more details or to book your spot.</p>
       </div>
     </section>
   );

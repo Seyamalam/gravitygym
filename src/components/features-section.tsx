@@ -27,27 +27,26 @@ export function FeaturesSection() {
   return (
     <section className="py-20 bg-zinc-900" id="features">
       <div className="container mx-auto px-4 md:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">WHY CHOOSE US</h2>
-        
+        <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-center text-white drop-shadow-lg">
+          WHY <span className="text-lime-400">CHOOSE US</span>
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <CardContainer key={index} className="w-full">
-              <CardBody className="w-full h-full flex flex-col bg-zinc-800 border border-zinc-700 hover:border-lime-500 transition-colors rounded-xl overflow-hidden p-6">
+              <CardBody className="w-full h-full flex flex-col bg-zinc-800 border border-zinc-700 hover:border-lime-500 transition-colors rounded-xl overflow-hidden p-6 shadow-lg">
                 <CardItem translateZ="60" className="flex items-center gap-4 mb-4">
-                  <CardItem translateZ="100" className="h-12 w-12 rounded-full bg-lime-500 text-black flex items-center justify-center">
+                  <CardItem translateZ="100" className="h-12 w-12 rounded-full bg-lime-500 text-black flex items-center justify-center shadow">
                     {feature.icon}
                   </CardItem>
-                  <h3 className="text-xl font-bold">{feature.title}</h3>
+                  <h3 className="text-xl font-extrabold text-white drop-shadow">{feature.title}</h3>
                 </CardItem>
-                
-                <CardItem translateZ="50" className="text-gray-300 text-base mb-4">
+                <CardItem translateZ="50" className="text-gray-100 text-base mb-4 font-medium">
                   {feature.description}
                 </CardItem>
-                
                 <CardItem translateZ="80" className="mt-auto">
                   <a 
                     href={feature.link} 
-                    className="block text-lime-500 hover:text-lime-400 font-semibold"
+                    className="block text-lime-500 hover:text-lime-400 font-semibold text-lg"
                   >
                     Learn more →
                   </a>
