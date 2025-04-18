@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { ArrowRight } from "lucide-react";
-
+import Image from "next/image";
 const successStories = [
   {
     name: "Sarah Johnson",
@@ -58,11 +58,13 @@ const successStories = [
 
 export function SuccessStories() {
   return (
-    <section className="py-20 bg-zinc-900" id="success-stories">
+    <section className="py-20 bg-black" id="success-stories">
       <div className="container mx-auto px-4 md:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">SUCCESS STORIES</h2>
-        <p className="text-gray-300 text-center mb-12 max-w-2xl mx-auto">
-          Real results from real members. See how GravityGym has transformed lives through dedicated training and support.
+        <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-center text-white drop-shadow-lg tracking-tight">
+          SUCCESS <span className="text-lime-400">STORIES</span>
+        </h2>
+        <p className="text-gray-300 text-center mb-12 max-w-2xl mx-auto text-lg font-medium drop-shadow">
+          Real results from real members. See how <span className="text-lime-400 font-semibold">GravityGym</span> has transformed lives through dedicated training and support.
         </p>
 
         {/* Animated Testimonials Section */}
@@ -74,61 +76,63 @@ export function SuccessStories() {
         <div className="space-y-16">
           {successStories.map((story, index) => (
             <CardContainer key={index} className="w-full">
-              <CardBody className={`w-full flex flex-col md:flex-row gap-8 bg-zinc-800 border border-zinc-700 rounded-xl overflow-hidden p-6 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
+              <CardBody className={`w-full flex flex-col md:flex-row gap-4 md:gap-8 bg-zinc-800 border border-zinc-700 rounded-xl overflow-hidden p-2 sm:p-4 md:p-6 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
                 {/* Before/After Images */}
-                <CardItem translateZ="80" className="w-full md:w-1/2">
+                <CardItem translateZ="80" className="w-full md:w-1/2 mb-4 md:mb-0">
                   <div className="relative">
-                    <div className="grid grid-cols-2 gap-2 h-full">
-                      <div className="relative h-64 md:h-80 overflow-hidden rounded-lg">
+                    <div className="grid grid-cols-2 gap-1 sm:gap-2 h-full">
+                      <div className="relative h-40 sm:h-64 md:h-80 overflow-hidden rounded-lg">
                         <span className="absolute top-2 left-2 z-10 bg-black/70 text-white text-xs px-2 py-1 rounded">BEFORE</span>
-                        <img 
+                        <Image 
                           src={story.beforeImage} 
                           alt={`${story.name} before`} 
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="relative h-64 md:h-80 overflow-hidden rounded-lg">
-                        <span className="absolute top-2 left-2 z-10 bg-lime-500 text-black text-xs px-2 py-1 rounded">AFTER</span>
-                        <img 
+                      <div className="relative h-40 sm:h-64 md:h-80 overflow-hidden rounded-lg">
+                        <span className="absolute top-2 left-2 z-10 bg-lime-500 text-black text-xs px-2 py-1 rounded font-bold">AFTER</span>
+                        <Image 
                           src={story.afterImage} 
                           alt={`${story.name} after`} 
                           className="w-full h-full object-cover"
                         />
                       </div>
                     </div>
-                    <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-zinc-900 text-white px-4 py-1 rounded-full border border-lime-500/50 whitespace-nowrap">
-                      <span className="text-lime-500 font-bold">{story.timeframe}</span> transformation
+                    <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-zinc-900 text-lime-400 px-4 py-1 rounded-full border border-lime-500/50 whitespace-nowrap font-semibold shadow-lg">
+                      <span className="text-lime-400 font-bold">{story.timeframe}</span> transformation
                     </div>
                   </div>
                 </CardItem>
 
                 {/* Content */}
                 <CardItem translateZ="60" className="w-full md:w-1/2 flex flex-col">
-                  <div className="mb-4">
-                    <h3 className="text-2xl font-bold">{story.name}, {story.age}</h3>
-                    <p className="text-gray-400">Member since {new Date().getFullYear() - Math.floor(Math.random() * 3) - 1}</p>
+                  <div className="mb-2 sm:mb-4">
+                    <h3 className="text-lg sm:text-2xl font-bold text-lime-400">
+                      {story.name}, {story.age}
+                    </h3>
+                    <p className="text-lime-400 font-semibold text-sm sm:text-base">Member since {new Date().getFullYear() - Math.floor(Math.random() * 3) - 1}</p>
                   </div>
 
-                  <div className="bg-zinc-900/50 rounded-lg p-4 mb-4">
-                    <h4 className="text-sm font-semibold text-lime-500 mb-3">ACHIEVEMENT METRICS</h4>
-                    <div className="grid grid-cols-3 gap-2">
+                  <div className="bg-zinc-900/50 rounded-lg p-2 sm:p-4 mb-2 sm:mb-4 border border-lime-500/30">
+                    <h4 className="text-xs sm:text-sm font-semibold text-lime-400 mb-2 sm:mb-3">ACHIEVEMENT METRICS</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                       {story.metrics.map((metric, metricIndex) => (
                         <div key={metricIndex} className="text-center">
-                          <div className="text-xl font-bold text-white">{metric.value}</div>
+                          <div className="text-base sm:text-xl font-bold text-lime-400">{metric.value}</div>
                           <div className="text-xs text-gray-400">{metric.label}</div>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  <CardItem translateZ="100" className="mb-4 italic text-gray-300 border-l-2 border-lime-500 pl-4">
-                    "{story.quote}"
+                  <CardItem translateZ="100" className="mb-2 sm:mb-4 italic text-lime-300 border-l-2 border-lime-500 pl-2 sm:pl-4 text-sm sm:text-base">
+                    &quot;{story.quote}&quot;
                   </CardItem>
 
-                  <p className="text-gray-300 mb-6">{story.story}</p>
+                  <p className="text-gray-200 mb-4 sm:mb-6 text-sm sm:text-base">{story.story}</p>
 
                   <div className="mt-auto">
-                    <Button variant="link" className="text-lime-500 hover:text-lime-400 p-0 h-auto font-semibold">
+                    <Button variant="link" className="text-lime-400 hover:text-lime-300 p-0 h-auto font-semibold w-full sm:w-auto">
                       Read Full Story <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
@@ -140,9 +144,9 @@ export function SuccessStories() {
 
         <div className="mt-16 text-center">
           <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-            Ready to write your own success story? Join GravityGym today and start your transformation journey.
+            Ready to write your own <span className="text-lime-400 font-semibold">success story</span>? Join <span className="text-lime-400 font-semibold">GravityGym</span> today and start your transformation journey.
           </p>
-          <Button className="bg-lime-500 hover:bg-lime-600 text-black font-bold px-8 py-6 text-lg">
+          <Button className="bg-lime-500 hover:bg-lime-600 text-black font-bold px-4 py-4 sm:px-8 sm:py-6 text-base sm:text-lg shadow-lg w-full sm:w-auto">
             START YOUR JOURNEY
           </Button>
         </div>

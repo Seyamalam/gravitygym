@@ -12,12 +12,12 @@ export function AboutSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <p className="text-gray-100 mb-6 text-lg font-medium drop-shadow">
-              At <span className="text-lime-400 font-semibold">GravityGym</span>, we're dedicated to helping you achieve your fitness goals in a supportive and motivating environment. 
+              At <span className="text-lime-400 font-semibold">GravityGym</span>, we are dedicated to helping you achieve your fitness goals in a supportive and motivating environment. 
               Our state-of-the-art facility is equipped with the latest fitness technology and equipment to ensure you get the most 
               effective workout possible.
             </p>
             <p className="text-gray-100 mb-8 text-lg font-medium drop-shadow">
-              Our team of certified trainers are passionate about fitness and committed to your success. Whether you're just starting 
+              Our team of certified trainers are passionate about fitness and committed to your success. Whether you are just starting 
               your fitness journey or looking to take your training to the next level, we have the expertise and resources to help you 
               get there.
             </p>

@@ -1,5 +1,8 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+"use client";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import Image from "next/image";
 
 const coaches = [
   {
@@ -25,6 +28,9 @@ const coaches = [
 ];
 
 export function CoachesSection() {
+  const sectionRef = useRef(null);
+  const sectionInView = useInView(sectionRef, { once: true, amount: 0.2 });
+
   return (
     <section className="py-20 bg-zinc-900" id="coaches">
       <div className="container mx-auto px-4 md:px-8">
@@ -34,31 +40,38 @@ export function CoachesSection() {
         <p className="text-gray-100 text-center mb-12 max-w-2xl mx-auto text-lg font-medium drop-shadow">
           Our team of experienced trainers are dedicated to helping you achieve your fitness goals.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div ref={sectionRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {coaches.map((coach, index) => (
-            <CardContainer key={index} className="w-full">
-              <CardBody className="w-full h-auto flex flex-col items-center bg-zinc-800 border border-zinc-700 rounded-xl overflow-hidden shadow-lg">
-                <CardItem
-                  translateZ="100"
-                  className="w-full h-64 relative overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-black/30 z-10" />
-                  <img 
-                    src={coach.image} 
-                    alt={coach.name} 
-                    className="w-full h-full object-cover"
-                    style={{ filter: "brightness(0.85)" }}
-                  />
-                </CardItem>
-                <CardItem
-                  translateZ="50"
-                  className="w-full text-center py-4"
-                >
-                  <h3 className="text-xl font-extrabold text-white drop-shadow mb-1">{coach.name}</h3>
-                  <p className="text-lime-400 font-semibold">{coach.role}</p>
-                </CardItem>
-              </CardBody>
-            </CardContainer>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              animate={sectionInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.15 * index, ease: "easeOut" }}
+            >
+              <CardContainer className="w-full">
+                <CardBody className="w-full h-auto flex flex-col items-center bg-zinc-800 border border-zinc-700 rounded-xl overflow-hidden shadow-lg">
+                  <CardItem
+                    translateZ="100"
+                    className="w-full h-64 relative overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-black/30 z-10" />
+                    <Image 
+                      src={coach.image} 
+                      alt={coach.name} 
+                      className="w-full h-full object-cover"
+                      style={{ filter: "brightness(0.85)" }}
+                    />
+                  </CardItem>
+                  <CardItem
+                    translateZ="50"
+                    className="w-full text-center py-4"
+                  >
+                    <h3 className="text-xl font-extrabold text-white drop-shadow mb-1">{coach.name}</h3>
+                    <p className="text-lime-400 font-semibold">{coach.role}</p>
+                  </CardItem>
+                </CardBody>
+              </CardContainer>
+            </motion.div>
           ))}
         </div>
       </div>

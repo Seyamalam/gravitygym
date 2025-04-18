@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import Image from "next/image";
 const partners = [
   { name: "Under Armour", logo: "https://cdn.iconscout.com/icon/free/png-256/free-under-armour-282153.png" },
   { name: "Adidas", logo: "https://cdn.iconscout.com/icon/free/png-256/free-adidas-282415.png" },
@@ -68,7 +68,7 @@ export function PartnerBrands() {
               {partners.map((partner, index) => (
                 <div key={`partner-${index}`} className="flex flex-col items-center group cursor-pointer">
                   <div className="w-24 h-24 flex items-center justify-center bg-zinc-700 rounded-2xl p-4 hover:bg-zinc-600 transition-colors duration-300">
-                    <img 
+                    <Image 
                       src={partner.logo} 
                       alt={`${partner.name} logo`} 
                       className="w-16 h-16 object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
@@ -82,7 +82,7 @@ export function PartnerBrands() {
               {partners.map((partner, index) => (
                 <div key={`partner-dup-${index}`} className="flex flex-col items-center group cursor-pointer">
                   <div className="w-24 h-24 flex items-center justify-center bg-zinc-700 rounded-2xl p-4 hover:bg-zinc-600 transition-colors duration-300">
-                    <img 
+                    <Image 
                       src={partner.logo} 
                       alt={`${partner.name} logo`} 
                       className="w-16 h-16 object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"

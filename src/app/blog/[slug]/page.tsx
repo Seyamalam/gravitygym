@@ -3,13 +3,32 @@
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, Calendar, Clock, Facebook, Linkedin, Twitter } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Facebook, Linkedin, Twitter } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-// Blog post data (in a real app this would come from an API or CMS)
-const blogPosts = [
+// Blog post data
+type BlogPost = {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  image: string;
+  category: string;
+  date: string;
+  readTime: string;
+  featured: boolean;
+  author: {
+    name: string;
+    role: string;
+    avatar: string;
+    bio?: string;
+  };
+  relatedPosts?: string[];
+};
+const blogPosts: BlogPost[] = [
   {
     id: "beginners-workout-guide",
     title: "Beginner's Guide to Strength Training",
@@ -131,6 +150,7 @@ const blogPosts = [
     id: "protein-myths",
     title: "5 Protein Myths Debunked by Science",
     excerpt: "There's a lot of misinformation about protein consumption. Our nutrition experts separate fact from fiction and reveal what science really says about protein intake.",
+    content: `<p>Protein is essential for muscle growth and repair, but there are many myths about how much you need and when to consume it. In this article, we debunk the top 5 protein myths with science-backed facts.</p>`,
     image: "https://images.unsplash.com/photo-1615847838919-133f80341870?q=80&w=1544&auto=format&fit=crop",
     category: "Nutrition",
     date: "April 28, 2023",
@@ -146,6 +166,7 @@ const blogPosts = [
     id: "hiit-benefits",
     title: "Why HIIT Should Be Part of Your Fitness Routine",
     excerpt: "High-Intensity Interval Training (HIIT) has gained massive popularity for good reason. Discover the science-backed benefits and how to incorporate it effectively.",
+    content: `<p>HIIT is a powerful training method that alternates short bursts of intense activity with periods of rest or lower-intensity exercise. Learn why HIIT is so effective and how to add it to your routine.</p>`,
     image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=1470&auto=format&fit=crop",
     category: "Workout Guide",
     date: "April 15, 2023",
@@ -161,6 +182,7 @@ const blogPosts = [
     id: "recovery-strategies",
     title: "Advanced Recovery Strategies for Athletes",
     excerpt: "Recovery is just as important as training. Learn about cutting-edge techniques that professional athletes use to optimize recovery and enhance performance.",
+    content: `<p>Discover advanced recovery strategies used by elite athletes, including cryotherapy, massage, and active recovery techniques to maximize your performance and reduce injury risk.</p>`,
     image: "https://images.unsplash.com/photo-1475052814086-f40e1c960a9f?q=80&w=1470&auto=format&fit=crop",
     category: "Recovery",
     date: "March 30, 2023",
@@ -176,6 +198,7 @@ const blogPosts = [
     id: "mindful-fitness",
     title: "Mindful Fitness: Merging Mental and Physical Health",
     excerpt: "The mind-body connection is powerful. Explore how incorporating mindfulness into your workouts can lead to better results and improved overall wellbeing.",
+    content: `<p>Mindful fitness is about being present during your workouts and connecting your mind and body. Learn techniques to incorporate mindfulness into your exercise routine for better results.</p>`,
     image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1520&auto=format&fit=crop",
     category: "Wellness",
     date: "March 18, 2023",
@@ -191,6 +214,7 @@ const blogPosts = [
     id: "meal-prep-guide",
     title: "Complete Meal Prep Guide for Fitness Enthusiasts",
     excerpt: "Proper nutrition doesn't have to be time-consuming. Our comprehensive meal prep guide shows you how to prepare a week's worth of healthy meals in just a few hours.",
+    content: `<p>Meal prepping can save you time and help you stay on track with your nutrition goals. This guide covers everything you need to know to meal prep like a pro.</p>`,
     image: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?q=80&w=1469&auto=format&fit=crop",
     category: "Nutrition",
     date: "March 5, 2023",
@@ -207,18 +231,18 @@ const blogPosts = [
 export default function BlogPostPage() {
   const params = useParams();
   const slug = params.slug as string;
-  const [post, setPost] = useState<any>(null);
-  const [relatedPosts, setRelatedPosts] = useState<any[]>([]);
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
   
   useEffect(() => {
     // Find the current post based on the slug
     const currentPost = blogPosts.find(p => p.id === slug);
-    setPost(currentPost);
+    setPost(currentPost ?? null);
     
     // Find related posts if the current post exists and has related posts
-    if (currentPost && currentPost.relatedPosts) {
+    if (currentPost?.relatedPosts) {
       const related = blogPosts.filter(p => 
-        currentPost.relatedPosts.includes(p.id)
+        currentPost.relatedPosts?.includes(p.id)
       );
       setRelatedPosts(related);
     }
@@ -231,7 +255,7 @@ export default function BlogPostPage() {
         <main className="py-20">
           <div className="container mx-auto px-4 md:px-8 text-center">
             <h1 className="text-3xl font-bold mb-4">Article Not Found</h1>
-            <p className="text-gray-300 mb-8">The article you're looking for doesn't exist or has been moved.</p>
+            <p className="text-gray-300 mb-8">The article you are looking for does not exist or has been moved.</p>
             <Button asChild>
               <Link href="/blog">Return to Blog</Link>
             </Button>
@@ -275,7 +299,7 @@ export default function BlogPostPage() {
             </div>
             
             <div className="flex items-center justify-center gap-3">
-              <img 
+              <Image 
                 src={post.author.avatar} 
                 alt={post.author.name}
                 className="w-10 h-10 rounded-full object-cover"
@@ -339,7 +363,7 @@ export default function BlogPostPage() {
                 <div className="bg-zinc-800 rounded-xl p-6 border border-zinc-700 mb-8">
                   <h3 className="text-lg font-bold mb-4">About the Author</h3>
                   <div className="flex items-center gap-4 mb-4">
-                    <img 
+                    <Image 
                       src={post.author.avatar} 
                       alt={post.author.name}
                       className="w-16 h-16 rounded-full object-cover"
@@ -362,7 +386,7 @@ export default function BlogPostPage() {
                       {relatedPosts.map((related) => (
                         <div key={related.id} className="flex gap-4">
                           <div className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
-                            <img 
+                            <Image 
                               src={related.image} 
                               alt={related.title}
                               className="w-full h-full object-cover"

@@ -102,7 +102,7 @@ export function FAQSection() {
           FREQUENTLY ASKED <span className="text-lime-400">QUESTIONS</span>
         </h2>
         <p className="text-gray-100 text-center mb-12 max-w-2xl mx-auto text-lg font-medium drop-shadow">
-          Find answers to our most commonly asked questions. If you can't find what you're looking for, feel free to contact us.
+          Find answers to our most commonly asked questions. If you can&apos;t find what you are looking for, feel free to contact us.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {faqCategories.map((category, index) => (
@@ -126,7 +126,7 @@ export function FAQSection() {
         <div className="mt-12 bg-lime-500/10 border border-lime-500/20 rounded-xl p-6 max-w-3xl mx-auto shadow-lg">
           <h3 className="text-xl font-bold mb-4 text-center text-white drop-shadow">Still have questions?</h3>
           <p className="text-gray-100 text-center mb-6">
-            Our team is here to help. Contact us directly and we'll get back to you as soon as possible.
+            Our team is here to help. Contact us directly and we will get back to you as soon as possible.
           </p>
           <div className="flex justify-center">
             <a 

@@ -27,7 +27,6 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would send this data to your backend
     console.log("Form submitted:", formData);
     alert("Thank you for your message! We'll get back to you soon.");
     setFormData({
@@ -58,7 +57,7 @@ export default function ContactPage() {
           <div className="container relative z-10 mx-auto px-4 md:px-8 text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-4">CONTACT US</h1>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Have questions or need more information? We're here to help you on your fitness journey.
+              Have questions or need more information? We are here to help you on your fitness journey.
             </p>
           </div>
         </section>
@@ -118,7 +117,7 @@ export default function ContactPage() {
                   
                   <div>
                     <label htmlFor="interest" className="block mb-2 text-sm font-medium">
-                      I'm Interested In *
+                      I am interested in *
                     </label>
                     <select
                       id="interest"

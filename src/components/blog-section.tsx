@@ -1,8 +1,11 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import Image from "next/image";
 const blogPosts = [
   {
     title: "10 Effective Strength Training Tips",
@@ -28,6 +31,9 @@ const blogPosts = [
 ];
 
 export function BlogSection() {
+  const sectionRef = useRef(null);
+  const sectionInView = useInView(sectionRef, { once: true, amount: 0.2 });
+
   return (
     <section className="py-20 bg-zinc-900" id="blog">
       <div className="container mx-auto px-4 md:px-8">
@@ -37,40 +43,47 @@ export function BlogSection() {
         <p className="text-gray-100 text-center mb-12 max-w-2xl mx-auto text-lg font-medium drop-shadow">
           Stay updated with the latest fitness tips, nutrition advice, and gym news.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {blogPosts.map((post, index) => (
-            <CardContainer key={index} className="w-full">
-              <CardBody className="w-full h-full flex flex-col bg-zinc-800 border border-zinc-700 rounded-xl overflow-hidden shadow-lg">
-                <CardItem 
-                  translateZ="100" 
-                  className="w-full h-48 relative overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-black/30 z-10" />
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover"
-                    style={{ filter: "brightness(0.85)" }}
-                  />
-                </CardItem>
-                <CardItem translateZ="60" className="p-6">
-                  <div className="text-sm text-lime-400 mb-2 font-semibold">{post.date}</div>
-                  <h3 className="text-xl font-bold mb-3 text-white drop-shadow">{post.title}</h3>
-                  <p className="text-gray-100 font-medium">{post.excerpt}</p>
-                </CardItem>
-                <CardItem translateZ="80" className="px-6 pb-6 mt-auto">
-                  <Button 
-                    variant="link" 
-                    asChild 
-                    className="text-lime-500 hover:text-lime-400 p-0 h-auto font-semibold text-lg"
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              animate={sectionInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.15 * index, ease: "easeOut" }}
+            >
+              <CardContainer className="w-full">
+                <CardBody className="w-full h-full flex flex-col bg-zinc-800 border border-zinc-700 rounded-xl overflow-hidden shadow-lg">
+                  <CardItem 
+                    translateZ="100" 
+                    className="w-full h-48 relative overflow-hidden"
                   >
-                    <Link href={post.slug} className="flex items-center">
-                      Read More <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardItem>
-              </CardBody>
-            </CardContainer>
+                    <div className="absolute inset-0 bg-black/30 z-10" />
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover"
+                      style={{ filter: "brightness(0.85)" }}
+                    />
+                  </CardItem>
+                  <CardItem translateZ="60" className="p-6">
+                    <div className="text-sm text-lime-400 mb-2 font-semibold">{post.date}</div>
+                    <h3 className="text-xl font-bold mb-3 text-white drop-shadow">{post.title}</h3>
+                    <p className="text-gray-100 font-medium">{post.excerpt}</p>
+                  </CardItem>
+                  <CardItem translateZ="80" className="px-6 pb-6 mt-auto">
+                    <Button 
+                      variant="link" 
+                      asChild 
+                      className="text-lime-500 hover:text-lime-400 p-0 h-auto font-semibold text-lg"
+                    >
+                      <Link href={post.slug} className="flex items-center">
+                        Read More <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </CardItem>
+                </CardBody>
+              </CardContainer>
+            </motion.div>
           ))}
         </div>
       </div>

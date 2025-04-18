@@ -2,8 +2,9 @@ import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
-import { ArrowRight, Calendar, Clock, Tag } from "lucide-react";
+import { ArrowRight, Calendar, Clock } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = {
   title: "Blog | GravityGym",
@@ -167,7 +168,7 @@ export default function BlogPage() {
           <div className="container mx-auto px-4 md:px-8">
             <h2 className="text-3xl font-bold mb-12">FEATURED ARTICLES</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {featuredPosts.map((post, index) => (
+              {featuredPosts.map((post) => (
                 <CardContainer key={post.id} className="w-full">
                   <CardBody className="w-full h-full flex flex-col bg-zinc-800 rounded-xl overflow-hidden border border-zinc-700">
                     <CardItem
@@ -175,7 +176,7 @@ export default function BlogPage() {
                       className="w-full h-60 md:h-72 relative overflow-hidden"
                     >
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-                      <img
+                      <Image
                         src={post.image}
                         alt={post.title}
                         className="w-full h-full object-cover"
@@ -204,7 +205,7 @@ export default function BlogPage() {
                       
                       <div className="flex items-center justify-between mt-auto pt-4 border-t border-zinc-700">
                         <div className="flex items-center gap-3">
-                          <img 
+                          <Image 
                             src={post.author.avatar} 
                             alt={post.author.name}
                             className="w-8 h-8 rounded-full object-cover"
@@ -237,7 +238,7 @@ export default function BlogPage() {
               {regularPosts.map((post) => (
                 <div key={post.id} className="bg-zinc-800 rounded-xl overflow-hidden border border-zinc-700 flex flex-col h-full">
                   <div className="w-full h-52 relative overflow-hidden">
-                    <img
+                    <Image
                       src={post.image}
                       alt={post.title}
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -266,7 +267,7 @@ export default function BlogPage() {
                     
                     <div className="flex items-center justify-between mt-auto pt-4 border-t border-zinc-700">
                       <div className="flex items-center gap-3">
-                        <img 
+                        <Image 
                           src={post.author.avatar} 
                           alt={post.author.name}
                           className="w-7 h-7 rounded-full object-cover"

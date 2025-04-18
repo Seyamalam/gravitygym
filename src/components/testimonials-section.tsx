@@ -1,6 +1,5 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Quote } from "lucide-react";
 
 const testimonials = [
@@ -45,7 +44,7 @@ export function TestimonialsSection() {
                 </CardItem>
                 
                 <CardItem translateZ="60" className="mb-6 pt-8 text-gray-300">
-                  "{testimonial.quote}"
+                  &quot;{testimonial.quote}&quot;
                 </CardItem>
                 
                 <CardItem translateZ="80" className="mt-auto">

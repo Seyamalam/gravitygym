@@ -4,6 +4,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Menu, Dumbbell } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -13,8 +14,34 @@ const navLinks = [
 ];
 
 export function Navbar() {
+  const [show, setShow] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          if (currentScrollY < 40) {
+            setShow(true);
+          } else if (currentScrollY > lastScrollY) {
+            setShow(false); // scrolling down
+          } else {
+            setShow(true); // scrolling up
+          }
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 py-4 px-4 md:px-8 bg-black/90 backdrop-blur-md shadow-lg">
+    <header className={`fixed top-0 left-0 right-0 z-50 py-4 px-4 md:px-8 bg-black/90 backdrop-blur-md shadow-lg transition-transform duration-300 ${show ? '' : '-translate-y-full'}`}>
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
           <Dumbbell className="h-7 w-7 text-lime-500 group-hover:rotate-12 transition-transform duration-300" />
@@ -54,18 +81,18 @@ export function Navbar() {
                   GRAVITYGYM
                 </span>
               </div>
-              <nav className="flex flex-col">
+              <nav className="flex flex-col w-full">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="py-4 px-8 text-xl hover:bg-zinc-800 transition-colors border-b border-zinc-800 font-semibold drop-shadow"
+                    className="py-4 px-8 text-base md:text-xl hover:bg-zinc-800 transition-colors border-b border-zinc-800 font-semibold drop-shadow w-full min-h-[44px] flex items-center"
                   >
                     {link.name}
                   </Link>
                 ))}
                 <div className="px-8 py-6">
-                  <Button className="w-full bg-lime-500 hover:bg-lime-600 text-black font-extrabold shadow-lg text-lg py-4">
+                  <Button className="w-full bg-lime-500 hover:bg-lime-600 text-black font-extrabold shadow-lg text-base md:text-lg py-4 min-h-[44px]">
                     JOIN NOW
                   </Button>
                 </div>

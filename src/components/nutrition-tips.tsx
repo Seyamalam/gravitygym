@@ -3,9 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 const nutritionCategories = [
   {
@@ -39,7 +37,7 @@ const nutritionCategories = [
       {
         title: "Recovery Protein Shake",
         description: "Fast-absorbing protein to support muscle recovery",
-        image: "https://images.unsplash.com/photo-1563410344629-5bcc6e05a016?q=80&w=1000&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1595348020949-87cdfbb44174?q=80&w=1000&auto=format&fit=crop",
         items: ["Whey protein", "Banana", "Almond milk", "Ice", "Cinnamon"]
       },
       {
@@ -115,7 +113,7 @@ export function NutritionTips() {
                         className="w-full h-52 relative overflow-hidden"
                       >
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-                        <img
+                        <Image
                           src={item.image}
                           alt={item.title}
                           className="w-full h-full object-cover"

@@ -4,7 +4,7 @@ import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { MembershipComparison } from "@/components/membership-comparison";
 import { Button } from "@/components/ui/button";
-import { Check, CheckCircle, ArrowRight } from "lucide-react";
+import { Check, CheckCircle, ArrowRight, Link } from "lucide-react";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { useState } from "react";
 
@@ -55,7 +55,6 @@ export default function JoinPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would send this data to your backend
     console.log("Form submitted:", { ...formData, plan: selectedPlan });
     setStep(3);
     window.scrollTo(0, 0);
@@ -164,7 +163,7 @@ export default function JoinPage() {
               <div className="max-w-3xl mx-auto">
                 <h2 className="text-3xl font-bold mb-4 text-center">YOUR INFORMATION</h2>
                 <p className="text-gray-300 text-center mb-12">
-                  You've selected the <span className="font-bold text-lime-500">{selectedPlan}</span> plan. 
+                  You have selected the <span className="font-bold text-lime-500">{selectedPlan}</span> plan. 
                   Please complete your information below to proceed.
                 </p>
                 
@@ -373,7 +372,7 @@ export default function JoinPage() {
                           className="mt-1 mr-2"
                         />
                         <label htmlFor="agreeTerms" className="text-sm text-gray-300">
-                          I agree to the <a href="#" className="text-lime-500 hover:text-lime-400">Terms and Conditions</a> and <a href="#" className="text-lime-500 hover:text-lime-400">Privacy Policy</a>. I understand that my membership is subject to the gym's rules and regulations. *
+                          I agree to the <a href="#" className="text-lime-500 hover:text-lime-400">Terms and Conditions</a> and <a href="#" className="text-lime-500 hover:text-lime-400">Privacy Policy</a>. I understand that my membership is subject to the gym&apos;s rules and regulations. *
                         </label>
                       </div>
                     </div>
@@ -410,8 +409,8 @@ export default function JoinPage() {
                 </div>
                 <h2 className="text-3xl font-bold mb-4">REGISTRATION COMPLETE!</h2>
                 <p className="text-gray-300 mb-8">
-                  Thank you for joining GravityGym! We're excited to have you as part of our fitness community. 
-                  We've sent a confirmation email to <span className="font-bold">{formData.email}</span> with your membership details.
+                  Thank you for joining GravityGym! We are excited to have you as part of our fitness community. 
+                  We have sent a confirmation email to <span className="font-bold">{formData.email}</span> with your membership details.
                 </p>
                 
                 <CardContainer className="w-full">
@@ -441,7 +440,7 @@ export default function JoinPage() {
                     
                     <CardItem translateZ="80" className="mt-auto">
                       <p className="text-gray-300 italic">
-                        "The journey of a thousand miles begins with a single step. Congratulations on taking that step toward your fitness goals!"
+                      &quot;The journey of a thousand miles begins with a single step. Congratulations on taking that step toward your fitness goals!&quot;
                       </p>
                     </CardItem>
                   </CardBody>
@@ -458,7 +457,7 @@ export default function JoinPage() {
                     className="bg-transparent hover:bg-zinc-800 border border-lime-500 text-lime-500 font-bold px-8 py-3"
                     asChild
                   >
-                    <a href="/">RETURN TO HOME</a>
+                    <Link href="/">RETURN TO HOME</Link>
                   </Button>
                 </div>
               </div>
